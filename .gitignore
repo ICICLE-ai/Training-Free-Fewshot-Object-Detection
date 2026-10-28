@@ -1,0 +1,81 @@
+# --- OS / editor ---
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*~
+*.swp
+*.swo
+.idea/
+.vscode/
+*.code-workspace
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# --- Test / lint caches ---
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Site-specific serving config (contains real absolute paths; see serving/README.md) ---
+datasets_dryrun/
+serving_datasets.json
+
+# --- Data, model weights and pipeline outputs (never commit; see CONTRIBUTING.md) ---
+# Feature stores, density caches, decision caches
+*.npz
+*.npy
+# Model checkpoints
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+# Imagery
+*.jpg
+*.jpeg
+*.JPG
+*.JPEG
+*.png
+*.tif
+*.tiff
+# Common local output directories
+data/
+datasets/
+outputs/
+runs/
+checkpoints/
+weights/
+*.log
