@@ -16,7 +16,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-from ecodet_pipeline.triage.acquisition import l2_normalize
+from protorcd_pipeline.triage.acquisition import l2_normalize
 
 
 def _write_store(dirpath: Path, embeddings: np.ndarray, metas):
@@ -170,7 +170,7 @@ def test_concurrent_double_submit_exactly_one_wins(tmp_path):
     import threading
 
     from serving.session_manager import SessionManager, StaleBatchError
-    from ecodet_pipeline.triage import load_pool, labels_from_coco
+    from protorcd_pipeline.triage import load_pool, labels_from_coco
 
     root = tmp_path / "ds"
     y = _build_synth_dataset(root, n_per_class=30, n_fg=3, dim=32, seed=4)
@@ -270,7 +270,7 @@ def test_label_taxonomy_validation(tmp_path):
 
 def _tiny_pool(metadata):
     """A minimal ProposalPool carrying just the metadata CropService needs."""
-    from ecodet_pipeline.triage import ProposalPool
+    from protorcd_pipeline.triage import ProposalPool
     n = len(metadata)
     x = np.zeros((n, 2), dtype=np.float32)
     ids = [m["proposal_id"] for m in metadata]
@@ -365,8 +365,8 @@ def test_worker_failure_becomes_explicit(tmp_path, monkeypatch):
     """If the worker raises inside the session, the session transitions to FAILED and the
     error is surfaced -- the UI never blocks forever waiting for a batch."""
     from serving.session_manager import SessionManager, SessionStatus, SessionError
-    from ecodet_pipeline.triage import load_pool, labels_from_coco
-    import ecodet_pipeline.triage.session as session_mod
+    from protorcd_pipeline.triage import load_pool, labels_from_coco
+    import protorcd_pipeline.triage.session as session_mod
 
     root = tmp_path / "ds"
     y = _build_synth_dataset(root, n_per_class=20, n_fg=3, dim=32, seed=3)

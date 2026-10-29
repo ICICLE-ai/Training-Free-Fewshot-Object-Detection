@@ -29,7 +29,7 @@ Endpoints
 Dataset registry
 ----------------
 Feature-store paths and image roots are configured server-side (a JSON file pointed to by
-``ECODET_SERVING_CONFIG``, or the built-in empty registry). The UI only ever sends a
+``PROTORCD_SERVING_CONFIG``, or the built-in empty registry). The UI only ever sends a
 dataset *name*, so backend paths are never exposed.
 """
 from __future__ import annotations
@@ -44,7 +44,7 @@ import numpy as np
 from fastapi import FastAPI, HTTPException, Response
 from pydantic import BaseModel, Field
 
-from ecodet_pipeline.triage import (
+from protorcd_pipeline.triage import (
     labels_from_coco,
     labels_from_coco_multi,
     load_pool,
@@ -54,7 +54,7 @@ from ecodet_pipeline.triage import (
 from .crops import CropService
 from .session_manager import SessionError, SessionManager, StaleBatchError
 
-logger = logging.getLogger("ecodet.serving")
+logger = logging.getLogger("protorcd.serving")
 
 # Generic client-facing messages -- detailed causes (which may contain OSC paths) are
 # logged server-side, never returned to the client.
@@ -95,7 +95,7 @@ class DatasetConfig(BaseModel):
 
 
 def load_registry(path: Optional[str] = None) -> Dict[str, DatasetConfig]:
-    path = path or os.environ.get("ECODET_SERVING_CONFIG")
+    path = path or os.environ.get("PROTORCD_SERVING_CONFIG")
     if not path:
         return {}
     data = json.loads(Path(path).read_text())
@@ -170,7 +170,7 @@ def _batch_payload(batch) -> Optional[dict]:
 # App factory                                                                  #
 # --------------------------------------------------------------------------- #
 def create_app(registry: Optional[Dict[str, DatasetConfig]] = None) -> FastAPI:
-    app = FastAPI(title="ecodet triage service", version="1.0")
+    app = FastAPI(title="protorcd triage service", version="1.0")
     registry = registry if registry is not None else load_registry()
     manager = SessionManager()
     crop_services: Dict[str, CropService] = {}     # session_id -> CropService
@@ -437,5 +437,5 @@ def _triage_payload(info) -> dict:
     }
 
 
-# Default app (reads registry from ECODET_SERVING_CONFIG if set).
+# Default app (reads registry from PROTORCD_SERVING_CONFIG if set).
 app = create_app()

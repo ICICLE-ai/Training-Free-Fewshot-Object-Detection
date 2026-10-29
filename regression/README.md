@@ -8,7 +8,7 @@ the paper's numbers come from — bit-for-bit, per (dataset, seed).
 | Tag | Commit | Role |
 |---|---|---|
 | `scientific-parity-baseline` | `08e0fa0` | the frozen scientific algorithms this harness validates |
-| `serving-hardened-baseline` | `21fb490` | current handoff; `ecodet_pipeline/` byte-identical to `08e0fa0`, so parity holds unchanged |
+| `serving-hardened-baseline` | `21fb490` | current handoff; `protorcd_pipeline/` byte-identical to `08e0fa0`, so parity holds unchanged |
 
 **Verified result at the hardened baseline:**
 

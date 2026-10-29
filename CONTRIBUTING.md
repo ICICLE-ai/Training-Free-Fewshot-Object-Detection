@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for helping improve EcoDet Pipeline. Contributions may include bug reports, documentation improvements, tests, examples, serving-layer changes, and UI integrations built against the HTTP contract.
+Thank you for helping improve ProtoRCD Pipeline. Contributions may include bug reports, documentation improvements, tests, examples, serving-layer changes, and UI integrations built against the HTTP contract.
 
 ## Before contributing
 
@@ -22,13 +22,13 @@ The repository is split into layers with different rules. Knowing which one your
 
 | Area | Status | What is accepted |
 |---|---|---|
-| [`ecodet_pipeline/`](ecodet_pipeline/README.md) | **Frozen** at `scientific-parity-baseline` (`08e0fa0`) | No changes without explicit maintainer sign-off. Its algorithms reproduce the paper bit-for-bit and are guarded by the equivalence regression. Propose changes in an issue first. |
+| [`protorcd_pipeline/`](protorcd_pipeline/README.md) | **Frozen** at `scientific-parity-baseline` (`08e0fa0`) | No changes without explicit maintainer sign-off. Its algorithms reproduce the paper bit-for-bit and are guarded by the equivalence regression. Propose changes in an issue first. |
 | [`serving/`](serving/README.md) | Active | Orchestration, IO, validation, and hardening around the frozen core. Must not implement scientific logic. Changes to request/response shapes must update [`serving/API.md`](serving/API.md). |
 | UI code (external) | Active | Builds **only** against [`serving/API.md`](serving/API.md). Collects labels and renders decisions; never computes species/background decisions, calibration, acquisition, or retirement. |
 | [`examples/`](examples/README.md), [`docs/`](docs/), [`tests/`](tests/) | Active | Improvements welcome. |
 | [`regression/`](regression/README.md) | Guarded | Must keep validating against the frozen research runs; do not loosen checks to make a change pass. |
 
-**Dependency direction is one-way:** `serving/` may import `ecodet_pipeline/`; `ecodet_pipeline/` must never import `serving/`.
+**Dependency direction is one-way:** `serving/` may import `protorcd_pipeline/`; `protorcd_pipeline/` must never import `serving/`.
 
 **Provenance tags are immutable.** Never move or delete an existing tag; a newly validated stage gets a new tag, created by the release manager.
 
@@ -76,7 +76,7 @@ A pull request should:
 
 - Reference the related issue or explain the problem being addressed.
 - Be limited to one coherent change.
-- State which layers it touches, and confirm `ecodet_pipeline/` is unchanged (or link the sign-off if it is not).
+- State which layers it touches, and confirm `protorcd_pipeline/` is unchanged (or link the sign-off if it is not).
 - Report the results of `pytest tests/` and, where applicable, `regression/run_all.sh`.
 - Include or update tests when practical.
 - Update documentation when user-visible behaviour, the HTTP contract, configuration, installation, or limitations change.

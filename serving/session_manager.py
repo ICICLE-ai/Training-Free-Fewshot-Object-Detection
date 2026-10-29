@@ -34,7 +34,7 @@ from typing import Dict, Hashable, List, Optional, Sequence
 
 import numpy as np
 
-from ecodet_pipeline.triage import LabelProvider, ProposalPool, TriageSession
+from protorcd_pipeline.triage import LabelProvider, ProposalPool, TriageSession
 
 __all__ = [
     "SessionStatus",

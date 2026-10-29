@@ -23,7 +23,7 @@ from pathlib import Path
 
 import numpy as np
 
-from ecodet_pipeline.triage import (
+from protorcd_pipeline.triage import (
     GTLabelProvider,
     TriageSession,
     labels_from_coco,

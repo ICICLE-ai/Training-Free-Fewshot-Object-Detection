@@ -25,7 +25,7 @@ from typing import Dict, Hashable, Optional, Sequence, Tuple
 
 from PIL import Image
 
-from ecodet_pipeline.triage import ProposalPool
+from protorcd_pipeline.triage import ProposalPool
 
 __all__ = ["CropService"]
 

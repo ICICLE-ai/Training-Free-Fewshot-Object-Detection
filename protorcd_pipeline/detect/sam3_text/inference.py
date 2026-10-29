@@ -1,6 +1,6 @@
 """Clean local SAM3 text-prompt inference entry point.
 
-This keeps the EcoDet project self-contained at the inference-script level while
+This keeps the ProtoRCD project self-contained at the inference-script level while
 still allowing the actual `sam3` model package to come from an installed
 environment or an explicit source checkout.
 """
@@ -221,7 +221,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--sam3-source-root",
         type=Path,
-        default=os.environ.get("ECODET_SAM3_SOURCE_ROOT"),
+        default=os.environ.get("PROTORCD_SAM3_SOURCE_ROOT"),
         help="Optional path to a source root containing the `sam3` model package",
     )
     parser.add_argument("--output", type=Path, help="Single-image visualization output")

@@ -55,7 +55,7 @@ create session ─▶ worker parks on CALIBRATION batch
 cp serving/datasets.example.json my_datasets.json    # then edit my_datasets.json
 
 # 2. Point the server at it and run.
-export ECODET_SERVING_CONFIG=/abs/path/to/my_datasets.json
+export PROTORCD_SERVING_CONFIG=/abs/path/to/my_datasets.json
 uvicorn serving.server:app --host 0.0.0.0 --port 8000
 ```
 
@@ -118,7 +118,7 @@ cannot inject an arbitrary class into the prototype bank.
 
 ## Constraints for future work
 
-* **Do not** change `ecodet_pipeline/triage/*` (the frozen algorithms) while building the
+* **Do not** change `protorcd_pipeline/triage/*` (the frozen algorithms) while building the
   UI. Add orchestration here, not decision logic.
 * After any backend change, re-run `regression/run_all.sh` and confirm **ALL REGRESSIONS
   PASSED** (10/10). See [../regression/README.md](../regression/README.md).

@@ -1,1 +1,0 @@
-"""ecodet_pipeline/detect"""

@@ -24,7 +24,7 @@ from __future__ import annotations
 
 from typing import Dict, Sequence
 
-from ecodet_pipeline.triage import (
+from protorcd_pipeline.triage import (
     CallbackLabelProvider,
     FileLabelProvider,
     TriageSession,

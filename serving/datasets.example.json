@@ -1,5 +1,5 @@
 {
-  "_comment": "Example serving registry (portable schema, PLACEHOLDER paths). Copy to a real file OUTSIDE git (e.g. datasets_dryrun/serving_datasets.json, which is gitignored), fill in the actual paths for your deployment, then: export ECODET_SERVING_CONFIG=/abs/path/to/your.json && uvicorn serving.server:app. The client only ever sends the logical dataset NAME; it never sees these paths.",
+  "_comment": "Example serving registry (portable schema, PLACEHOLDER paths). Copy to a real file OUTSIDE git (e.g. datasets_dryrun/serving_datasets.json, which is gitignored), fill in the actual paths for your deployment, then: export PROTORCD_SERVING_CONFIG=/abs/path/to/your.json && uvicorn serving.server:app. The client only ever sends the logical dataset NAME; it never sees these paths.",
 
   "datasets": [
     {

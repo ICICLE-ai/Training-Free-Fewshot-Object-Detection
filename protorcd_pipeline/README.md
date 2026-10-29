@@ -1,4 +1,4 @@
-# `ecodet_pipeline` — the scientific package
+# `protorcd_pipeline` — the scientific package
 
 The three-stage detect → features → triage pipeline. This package is the **scientific**
 side of the repo, and it must not depend on `serving/` or on any UI. The frozen **triage**
@@ -18,7 +18,7 @@ SAM3 text-prompt detection that turns imagery into **class-agnostic** animal pro
 
 - **Input:** images (+ a COCO-style image list).
 - **Output:** raw SAM3 detection JSON (boxes/masks per image).
-- **Entry point:** `python -m ecodet_pipeline.detect.run_sam3_text_detection` (needs the
+- **Entry point:** `python -m protorcd_pipeline.detect.run_sam3_text_detection` (needs the
   `detect` extra — torch/SAM3).
 - **Frozen scientific baseline:** yes.
 

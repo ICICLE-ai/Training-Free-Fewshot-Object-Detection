@@ -2,7 +2,7 @@
 
 Decoupled from ground-truth boxes. Public API::
 
-    from ecodet_pipeline.triage import (
+    from protorcd_pipeline.triage import (
         ProposalPool, load_pool, labels_from_coco,
         CallbackLabelProvider, FileLabelProvider, GTLabelProvider,
         TriageRule, calibrate_rule, guarded_triage,

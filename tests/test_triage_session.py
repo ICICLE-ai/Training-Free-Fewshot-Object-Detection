@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from ecodet_pipeline.triage import (
+from protorcd_pipeline.triage import (
     CallbackLabelProvider,
     GTLabelProvider,
     ProposalPool,
@@ -17,7 +17,7 @@ from ecodet_pipeline.triage import (
     calibrate_rule,
     guarded_triage,
 )
-from ecodet_pipeline.triage.acquisition import l2_normalize
+from protorcd_pipeline.triage.acquisition import l2_normalize
 
 
 def _make_pool(n_per_class=60, n_fg_classes=4, dim=64, seed=0):
