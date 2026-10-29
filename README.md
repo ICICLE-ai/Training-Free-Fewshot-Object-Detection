@@ -1,4 +1,4 @@
-# EcoDet Pipeline
+# ProtoRCD Pipeline
 
 A clean, UI-integratable pipeline for ecological camera-trap object detection with active
 **prototype triage** — Resolve / Clear / Defer over detector proposals, decoupled from
@@ -31,7 +31,7 @@ markers — never move them;** each validated stage gets a new tag.
 |---|---|---|
 | `scientific-parity-baseline` | `08e0fa0` | The frozen scientific implementation, with the triage / acquisition / calibration path validated to reproduce the research runs **bit-for-bit** given the corresponding proposal and feature stores (70/70 checks, 10/10 runs; see [regression/](regression/README.md)). |
 | `serving-baseline` | `247d741` | First HTTP service exposing the pipeline to an external UI. |
-| `serving-hardened-baseline` | `21fb490` | **Current handoff point.** Adds serving-layer hardening (atomic submit, mandatory `batch_id`, path sanitization, taxonomy validation). `ecodet_pipeline/` byte-identical to `08e0fa0`. |
+| `serving-hardened-baseline` | `21fb490` | **Current handoff point.** Adds serving-layer hardening (atomic submit, mandatory `batch_id`, path sanitization, taxonomy validation). `protorcd_pipeline/` byte-identical to `08e0fa0`. |
 
 ## Where to start
 
@@ -39,7 +39,7 @@ markers — never move them;** each validated stage gets a new tag.
 |---|---|
 | a **UI developer** | [`docs/architecture.md`](docs/architecture.md) → [`serving/README.md`](serving/README.md) → [`serving/API.md`](serving/API.md) |
 | running it **headless** / reproducing results | [`examples/README.md`](examples/README.md) + [`regression/README.md`](regression/README.md) |
-| working on the **science** | [`ecodet_pipeline/README.md`](ecodet_pipeline/README.md) → [`ecodet_pipeline/triage/README.md`](ecodet_pipeline/triage/README.md) |
+| working on the **science** | [`protorcd_pipeline/README.md`](protorcd_pipeline/README.md) → [`protorcd_pipeline/triage/README.md`](protorcd_pipeline/triage/README.md) |
 
 ## Repository map
 
@@ -47,7 +47,7 @@ markers — never move them;** each validated stage gets a new tag.
 docs/
   architecture.md          # conceptual onboarding + layering rules (start here)
   gt_decoupling.md         # how GT was removed vs the research code
-ecodet_pipeline/           # the scientific package (frozen at 08e0fa0)
+protorcd_pipeline/           # the scientific package (frozen at 08e0fa0)
   detect/                  #   stage 1: SAM3 text-prompt detection
   features/                #   stage 2: DINOv3 + BioCLIP-2 embeddings
   common/                  #   detect->features bridge + shared utils
@@ -80,7 +80,7 @@ reproduce it. The canonical entry point is `for_protocol("split_no_veto")`, and 
 `step()` is a complete round (acquire → label → triage → retire):
 
 ```python
-from ecodet_pipeline.triage import TriageSession, GTLabelProvider, load_pool, labels_from_coco
+from protorcd_pipeline.triage import TriageSession, GTLabelProvider, load_pool, labels_from_coco
 
 pool = load_pool("dinov3_store/", "bioclip_store/")     # background_dir, foreground_dir
 gt, _ = labels_from_coco(pool.metadata, "annotations.json")
@@ -103,7 +103,7 @@ Run the service and build a front-end against its contract; proposal data and im
 on the backend.
 
 ```bash
-export ECODET_SERVING_CONFIG=/path/to/serving_datasets.json
+export PROTORCD_SERVING_CONFIG=/path/to/serving_datasets.json
 uvicorn serving.server:app --host 0.0.0.0 --port 8000
 ```
 
@@ -112,7 +112,7 @@ See [`serving/README.md`](serving/README.md) and [`serving/API.md`](serving/API.
 ## Tests & regression
 
 ```bash
-pip install -e ".[serving,dev]"   # makes ecodet_pipeline + serving importable
+pip install -e ".[serving,dev]"   # makes protorcd_pipeline + serving importable
 pytest tests/                     # 10/10 (triage + serving)
 # fresh clone without installing: PYTHONPATH=. pytest tests/
 
@@ -124,13 +124,13 @@ The equivalence sweep is heavier and separate; details and the density caveat ar
 
 ## Contribution rules
 
-- **Do not modify `ecodet_pipeline/`** (the scientific pipeline). It is frozen at
+- **Do not modify `protorcd_pipeline/`** (the scientific pipeline). It is frozen at
   `08e0fa0` and guarded by the equivalence regression.
 - **UI code builds only against [`serving/API.md`](serving/API.md)** — the client sends a
   logical dataset name and never needs OSC paths. UI code must not implement scientific
   logic.
-- **Dependency direction is one-way:** `serving/` may import `ecodet_pipeline/`;
-  `ecodet_pipeline/` must never import `serving/`.
+- **Dependency direction is one-way:** `serving/` may import `protorcd_pipeline/`;
+  `protorcd_pipeline/` must never import `serving/`.
 - Any change that touches the backend must keep **both** green before it lands:
   `pytest tests/` (10/10) and `regression/run_all.sh` (10/10). If it can't, it's out of
   scope until discussed.

@@ -1,4 +1,4 @@
-"""Typed records used by the EcoDet data pipeline."""
+"""Typed records used by the ProtoRCD data pipeline."""
 
 from __future__ import annotations
 

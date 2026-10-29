@@ -100,7 +100,7 @@ reproducible result use; instantiate with `TriageSession.for_protocol("split_no_
 
 The earlier "guarded veto" wording in the research code describes the *generic capability*.
 The frozen protocol disables the veto — see
-[`../ecodet_pipeline/triage/README.md`](../ecodet_pipeline/triage/README.md) for the full
+[`../protorcd_pipeline/triage/README.md`](../protorcd_pipeline/triage/README.md) for the full
 decision rule and [`../regression/README.md`](../regression/README.md) for the bit-for-bit
 validation.
 

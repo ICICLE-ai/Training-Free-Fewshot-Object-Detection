@@ -1,4 +1,4 @@
-# `ecodet_pipeline.triage` — active acquisition + Resolve/Clear/Defer
+# `protorcd_pipeline.triage` — active acquisition + Resolve/Clear/Defer
 
 Stage 3 of the pipeline. Given two frozen representations of each detector proposal —
 **BioCLIP-2** (foreground / species) and **DINOv3** (background / validity) — this
@@ -57,7 +57,7 @@ asymmetric — the burden of proof to *drop* an animal is higher than to *keep* 
 ## The round loop (what a UI drives)
 
 ```python
-from ecodet_pipeline.triage import TriageSession, CallbackLabelProvider, load_pool
+from protorcd_pipeline.triage import TriageSession, CallbackLabelProvider, load_pool
 
 pool = load_pool(dinov3_store, bioclip_store)              # bg_x, fg_x, ids, metadata
 provider = CallbackLabelProvider(show_crops_and_get_labels) # your UI

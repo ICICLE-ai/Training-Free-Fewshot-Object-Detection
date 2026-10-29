@@ -1,7 +1,7 @@
 """Active-triage session -- the round loop a UI drives (stage 3, orchestration).
 
 This ties the stage-3 pieces together into the loop the paper runs, but decoupled from
-ground truth: labels arrive through a :class:`~ecodet_pipeline.triage.labels.LabelProvider`
+ground truth: labels arrive through a :class:`~protorcd_pipeline.triage.labels.LabelProvider`
 (a UI callback, a JSON exchange, or -- offline only -- a GT provider).
 
 Lifecycle::

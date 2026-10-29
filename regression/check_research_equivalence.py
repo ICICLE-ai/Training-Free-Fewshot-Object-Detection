@@ -40,7 +40,7 @@ import numpy as np
 # Allow running from a source checkout without installing.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from ecodet_pipeline.triage import (  # noqa: E402
+from protorcd_pipeline.triage import (  # noqa: E402
     GTLabelProvider,
     TriageSession,
     labels_from_coco,

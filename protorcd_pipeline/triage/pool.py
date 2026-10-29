@@ -1,6 +1,6 @@
 """Proposal pool loading: bridge stage-2 feature stores into stage-3 triage.
 
-A "feature store" is what stage 2 (``ecodet_pipeline.features.extract``) writes:
+A "feature store" is what stage 2 (``protorcd_pipeline.features.extract``) writes:
 
     <feature_dir>/manifest.json     {"chunk_files": ["chunk_0000.npz", ...], ...}
     <feature_dir>/chunk_*.npz       arrays under key "embeddings"  (rows = proposals)
